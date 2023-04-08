@@ -32,14 +32,6 @@ async function queryData(){
  
 }
 
-
-//allows me to print the loop for queryData()
-/*async function queryLoop(){
-  let data = await queryData();
-  console.log(data);
-  return data;
-}*/
-
 function reserveCart(boolean){
   //console.log(cartData);
   try{
@@ -77,6 +69,7 @@ const checkIfUsed = async()=>{
 }
 
 //called to find the distance bewteen 2 points on the map
+//<sonia Rode><How to calculate distances between points with the Maps JavaScript API><https://cloud.google.com/blog/products/maps-platform/how-calculate-distances-map-maps-javascript-api>
 async function cartDistance(cart) {
   
   var userLat = currentLocation.lat;
@@ -134,15 +127,6 @@ const getNearestCart = async() =>{
   }
 }
 
-function makeMarker( position, icon, title ) {
-  new google.maps.Marker({
-   position: position,
-   map: map,
-   icon: icon,
-   title: title
-  });
- }
-
 async function getDestination(map, start, end, boolean){
   let newStart = start;
   let newEnd = end;
@@ -197,16 +181,6 @@ const searchBar = async(map, autocomplete, infowindow) =>{
   
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-}
-
 function resetMap(){
   inCart = false;
   if(reserved == true){
@@ -224,6 +198,16 @@ function resetMap(){
   console.log(cartData);
 }
 
+//based off of code from <https://developers.google.com/maps/documentation/javascript/geolocation>
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
 function drawCurrLocation(userMarker){
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -233,12 +217,9 @@ function drawCurrLocation(userMarker){
           lng: position.coords.longitude,
         };
         currentLocation = pos;
-        //console.log("data of my locations",pos);
       }
       
     );
-    //console.log("test test 1", position);
-  
   } else {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
@@ -247,7 +228,7 @@ function drawCurrLocation(userMarker){
   userMarker.setPosition(currentLocation);
 }
 
-
+//Buttons based off of <https://developers.google.com/maps/documentation/javascript/examples/control-custom>
 //button that just gets the nearest cart
 function createCartButton(map){
   const cartButton = document.createElement("button");
