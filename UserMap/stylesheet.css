@@ -1,0 +1,22 @@
+#map{
+    width: 80%;
+    height: 56vh;
+    padding: 10%;
+    background-color: grey;
+}
+
+#searchInput{
+    visibility: none;
+    position: fixed;
+    background-color: #fff;
+    border: 2px solid #fff;
+    border-radius: 1px;
+    width: "100px";
+    box-Shadow: 0 2px 6px rgba(0,0,0,.3);
+    color: rgb(25,25,25);
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 34px;
+    margin-top: 10px;
+    margin-left: calc(25% - 100px);
+}
